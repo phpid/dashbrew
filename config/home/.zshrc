@@ -52,9 +52,10 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export COMPOSER_HOME=/usr/share/composer/.composer
-export PATH=/var/www/u3/bin:$COMPOSER_HOME/vendor/bin:$HOME/bin:/usr/local/bin:$PATH
+export MAGENTO_ROOT=/var/www/u3
+export PATH=$MAGENTO_ROOT/bin:$COMPOSER_HOME/vendor/bin:$HOME/bin:/usr/local/bin:$PATH
 export XDEBUG_CONFIG="idekey=PhpStorm"
-export PHP_IDE_CONFIG="serverName=local.dev"
+export PHP_IDE_CONFIG="serverName=local.smartbox.com"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
