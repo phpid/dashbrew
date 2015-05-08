@@ -19,3 +19,6 @@
 [submodule "src/Slim"]
 	path = src/Slim
 	url = https://github.com/codeguy/Slim.git
+[submodule "public/xhgui"]
+	path = public/xhgui
+	url = git@github.com:perftools/xhgui.git
