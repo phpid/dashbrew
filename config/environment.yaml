@@ -30,7 +30,7 @@ os::packages:
 #sudo ldconfig -v
 
 php::builds:
-  5.4.38:
+  5.4.40:
     installed: true
     default: true
     variants:
