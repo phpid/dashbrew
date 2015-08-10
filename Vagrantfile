@@ -34,7 +34,8 @@ Vagrant.configure(2) do |config|
     elsif host =~ /linux/
         cpus = `nproc`.to_i
         # meminfo shows KB and we need to convert to MB
-        mem = 6144 #`grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
+        mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
+        # 6144
     else # sorry Windows folks, I can't help you
         cpus = 2
         mem = 1024
@@ -54,7 +55,7 @@ Vagrant.configure(2) do |config|
   # The second parameter must be an absolute path of where to share the folder within the guest machine.
   # Finally the third parameter is a set of non-required options to configure synced folders.
 
-  config.vm.synced_folder "public", "/var/www", nfs: true, mount_options: ['rw', 'vers=3', 'tcp', 'fsc']  # the fsc is for cachedfilesd
+  config.vm.synced_folder "public", "/var/www", nfs: true, mount_options: ['rw', 'vers=3', 'tcp', 'fsc'], :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']  # the fsc is for cachedfilesd
   config.bindfs.bind_folder "/var/www", "/var/www", :owner => "vagrant", :group => "www-data", :'create-as-user' => true, :perms => "u=rwx:g=rwx:o=rD", :'create-with-perms' => "u=rwx:g=rwx:o=rD", :'chown-ignore' => true, :'chgrp-ignore' => true, :'chmod-ignore' => true
 
   # Run the main shell provisioner.

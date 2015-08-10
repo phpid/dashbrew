@@ -58,6 +58,9 @@ php::builds:
       mssql:
         enabled: true
         version: stable
+      redis:
+        enabled: true
+        version: stable
       xdebug:
         enabled: true
         version: stable
