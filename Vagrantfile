@@ -44,8 +44,8 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--memory", mem]
     vb.customize ["modifyvm", :id, "--cpus", cpus]
     vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    #vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    #vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
   # Synced Folders
@@ -56,7 +56,7 @@ Vagrant.configure(2) do |config|
   # Finally the third parameter is a set of non-required options to configure synced folders.
 
   config.vm.synced_folder "public", "/var/www", nfs: true, mount_options: ['rw', 'vers=3', 'tcp', 'fsc'], :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']  # the fsc is for cachedfilesd
-  config.bindfs.bind_folder "/var/www", "/var/www", :owner => "vagrant", :group => "www-data", :'create-as-user' => true, :perms => "u=rwx:g=rwx:o=rD", :'create-with-perms' => "u=rwx:g=rwx:o=rD", :'chown-ignore' => true, :'chgrp-ignore' => true, :'chmod-ignore' => true
+  #config.bindfs.bind_folder "/var/www", "/home/slava/Sites/dashbrew/public", :owner => "vagrant", :group => "www-data", :'create-as-user' => true, :perms => "u=rwx:g=rwx:o=rD", :'create-with-perms' => "u=rwx:g=rwx:o=rD"
 
   # Run the main shell provisioner.
   config.vm.provision 'shell', run: 'always' do |s|

@@ -13,7 +13,7 @@ os::packages:
   php5-mcrypt: true
   php5-memcached: true
   php5-mongo: true
-  php5-mssql: true
+  php5-mssql: false
   libsybdb5: true
   libmemcached-dev: true
   vim: true
@@ -32,7 +32,7 @@ os::packages:
 php::builds:
   5.4.40:
     installed: true
-    default: true
+    default: false
     variants:
       - dev
       - dbs
@@ -44,6 +44,12 @@ php::builds:
         enabled: true
         version: stable
       gd:
+        enabled: true
+        version: stable
+      raphf:
+        enabled: true
+        version: stable
+      propro:
         enabled: true
         version: stable
       http:
@@ -68,9 +74,97 @@ php::builds:
         enabled: true
         version: latest
     fpm:
-      port: 9002
+      port: 9003
       autostart: true
-
+  5.5.9:
+    installed: true
+    default: true
+    variants:
+      - dev
+      - dbs
+      - gd
+      - mcrypt
+      - opcache
+    extensions:
+      gd:
+        enabled: true
+        version: stable
+      raphf:
+        enabled: true
+        version: stable
+      propro:
+        enabled: true
+        version: stable
+      http:
+        enabled: true
+        version: 1.7.6
+      memcached:
+        enabled: true
+        version: stable
+      mongo:
+        enabled: true
+        version: stable
+      opcache:
+        enabled: true
+        version: stable
+      redis:
+        enabled: true
+        version: stable
+      xdebug:
+        enabled: true
+        version: stable
+      xhprof:
+        enabled: true
+        version: latest
+    fpm:
+      port: 9004
+      autostart: true
+  5.3.27:
+    installed: true
+    default: false
+    variants:
+      - dev
+      - dbs
+      - gd
+      - mcrypt
+      - --with-mssql
+    extensions:
+      apc:
+        enabled: true
+        version: stable
+      gd:
+        enabled: true
+        version: stable
+      raphf:
+        enabled: true
+        version: stable
+      propro:
+        enabled: true
+        version: stable
+      http:
+        enabled: true
+        version: 1.7.6
+      memcached:
+        enabled: true
+        version: stable
+      mongo:
+        enabled: true
+        version: stable
+      mssql:
+        enabled: true
+        version: stable
+      redis:
+        enabled: true
+        version: stable
+      xdebug:
+        enabled: true
+        version: 2.2.7
+      xhprof:
+        enabled: true
+        version: latest
+    fpm:
+      port: 9005
+      autostart: false
 #
 # Apache Modules
 #
