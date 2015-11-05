@@ -38,7 +38,7 @@ php::builds:
       - dbs
       - gd
       - mcrypt
-      - opcache
+      - --enable-opcache
     extensions:
       gd:
         enabled: true
