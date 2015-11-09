@@ -55,8 +55,16 @@ Vagrant.configure(2) do |config|
   # The second parameter must be an absolute path of where to share the folder within the guest machine.
   # Finally the third parameter is a set of non-required options to configure synced folders.
 
-  config.vm.synced_folder "public", "/var/www", nfs: true, mount_options: ['rw', 'vers=3', 'tcp', 'fsc'], :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']  # the fsc is for cachedfilesd
-  #config.bindfs.bind_folder "/var/www", "/home/slava/Sites/dashbrew/public", :owner => "vagrant", :group => "www-data", :'create-as-user' => true, :perms => "u=rwx:g=rwx:o=rD", :'create-with-perms' => "u=rwx:g=rwx:o=rD"
+
+  if Vagrant.has_plugin?("vagrant-bindfs")
+    config.nfs.map_uid = Process.uid
+    config.nfs.map_gid = Process.gid
+    config.vm.synced_folder "public", "/vagrant-nfs", nfs: true, mount_options: ['rw', 'vers=3', 'tcp', 'fsc'], :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
+    config.bindfs.bind_folder "/vagrant-nfs", "/var/www", :owner => "vagrant", :group => "www-data", :'create-as-user' => true, :perms => "u=rwx:g=rwx:o=rD", :'create-with-perms' => "u=rwx:g=rwx:o=rD"
+  else
+    # the fsc is for cachedfilesd
+    config.vm.synced_folder "public", "/var/www", nfs: true, mount_options: ['rw', 'vers=3', 'tcp', 'fsc'], :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
+  end
 
   # Run the main shell provisioner.
   config.vm.provision 'shell', run: 'always' do |s|
