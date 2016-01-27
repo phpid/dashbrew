@@ -72,6 +72,11 @@ Vagrant.configure(2) do |config|
     s.privileged  = true
   end
 
+  config.vm.provision :shell, :inline => "mountpoint -q /var/www/u3/var/cache || mount -t tmpfs tmpfs /var/www/u3/var/cache -o uid=vagrant,gid=www-data"
+  config.vm.provision :shell, :inline => "mountpoint -q /var/www/u3/var/phpunit.cache || mount -t tmpfs tmpfs /var/www/u3/var/phpunit.cache -o uid=vagrant,gid=www-data"
+
+  config.vm.boot_timeout = 30
+
   # Check if vagrant-hosts-provisioner plugin is installed
   if Vagrant.has_plugin?("vagrant-hosts-provisioner")
     # Run the hostsupdate provisioner
