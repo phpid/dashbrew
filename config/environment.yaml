@@ -98,7 +98,7 @@ php::builds:
       http:
         enabled: true
         version: 1.7.6
-      memcached:
+      memcache:
         enabled: true
         version: stable
       mongo:
