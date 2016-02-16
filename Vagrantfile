@@ -44,8 +44,7 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--memory", mem]
     vb.customize ["modifyvm", :id, "--cpus", cpus]
     vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
-    #vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    #vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
   # Synced Folders
@@ -74,6 +73,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, :inline => "mountpoint -q /var/www/u3/var/cache || mount -t tmpfs tmpfs /var/www/u3/var/cache -o uid=vagrant,gid=www-data"
   config.vm.provision :shell, :inline => "mountpoint -q /var/www/u3/var/phpunit.cache || mount -t tmpfs tmpfs /var/www/u3/var/phpunit.cache -o uid=vagrant,gid=www-data"
+  config.vm.provision :shell, :inline => "mountpoint -q /var/www/u3/var/log || mount -t tmpfs tmpfs /var/www/u3/var/log -o uid=vagrant,gid=www-data"
+
+  config.vm.provision :shell, :inline => "mountpoint -q /var/www/smartbridge/logs || mount -t tmpfs tmpfs /var/www/smartbridge/logs -o uid=vagrant,gid=www-data"
 
   config.vm.boot_timeout = 30
 
