@@ -45,10 +45,10 @@ php::builds:
         version: stable
       raphf:
         enabled: true
-        version: stable
+        version: 1.1.2
       propro:
         enabled: true
-        version: stable
+        version: 1.0.2
       http:
         enabled: true
         version: 1.7.6
@@ -91,10 +91,10 @@ php::builds:
         version: stable
       raphf:
         enabled: true
-        version: stable
+        version: 1.1.2
       propro:
         enabled: true
-        version: stable
+        version: 1.0.2
       http:
         enabled: true
         version: 1.7.6
@@ -118,6 +118,37 @@ php::builds:
         version: latest
     fpm:
       port: 9005
+      autostart: false
+  5.3.29:
+    installed: true
+    default: false
+    variants:
+      - dev
+      - dbs
+      - gd
+      - mcrypt
+      - --with-mssql
+    extensions:
+      apc:
+        enabled: true
+        version: stable
+      gd:
+        enabled: true
+        version: stable
+      http:
+        enabled: true
+        version: 1.7.6
+      memcached:
+        enabled: true
+        version: stable
+      mssql:
+        enabled: true
+        version: stable
+      xdebug:
+        enabled: true
+        version: 2.2.7
+    fpm:
+      port: 9006
       autostart: false
 #
 # Apache Modules
